@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:annotation>
+    <xsd:documentation xml:lang="fr">
+      schema XML pour Arbre de la vie
+    </xsd:documentation>
+  </xsd:annotation>
+  <!-- Racine du fichier-->
+  <xsd:element name="racine">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="node" type="Node" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <!-- Node -->
+  <xsd:complexType name="Node">
+    <xsd:sequence>
+      <xsd:element name="node" type="Node" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required"/>
+    <xsd:attribute name="child_nodes" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="leaf_node" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="tolorg_link" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="extinct" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="confidence" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="phylesis" type="xsd:integer" use="optional"/>
+  </xsd:complexType>
+
+</xsd:schema>

@@ -31,7 +31,7 @@ def add_node(parent_element, node_label):
             add_node(node_element, child_label)
 
 
-root = ET.Element('tree')
+root = ET.Element('racine')
 
 # adding all nodes to the tree starting from the root element
 for node_label in tree:

@@ -5,7 +5,13 @@ import xml.etree.ElementTree as ET
 with open('treeoflife_nodes.csv', 'r') as f:
     reader = csv.reader(f)
     next(reader)
-    node_labels = {row[0]: row[1] for row in reader}
+    node_labels = {row[0]: {'node_name': row[1], 
+                            'child_nodes': row[2],
+                            'leaf_node': row[3],
+                            'tolorg_link': row[4],
+                            'extinct': row[5],
+                            'confidence': row[6],
+                            'phylesis': row[7]} for row in reader}
 
 # read edges
 with open('treeoflife_links.csv', 'r') as f:
@@ -25,7 +31,8 @@ for edge in edges:
 
 # recursively adding nodes to the tree
 def add_node(parent_element, node_label):
-    node_element = ET.SubElement(parent_element, 'node', label=node_label)
+    node_attributes = node_labels[node_label]
+    node_element = ET.SubElement(parent_element, 'node', node_id=node_label, **node_attributes)
     if node_label in tree:
         for child_label in tree[node_label]:
             add_node(node_element, child_label)

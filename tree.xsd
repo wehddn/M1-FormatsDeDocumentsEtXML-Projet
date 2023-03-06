@@ -18,8 +18,8 @@
     <xsd:sequence>
       <xsd:element name="node" type="Node" minOccurs="0" maxOccurs="unbounded"/>
     </xsd:sequence>
-    <xsd:attribute name="label" type="xsd:string" use="required"/>
-    <xsd:attribute name="node_name" type="xsd:integer" use="optional"/>
+    <xsd:attribute name="node_id" type="xsd:integer" use="required"/>
+    <xsd:attribute name="node_name" type="xsd:string" use="optional"/>
     <xsd:attribute name="child_nodes" type="xsd:integer" use="optional"/>
     <xsd:attribute name="leaf_node" type="xsd:integer" use="optional"/>
     <xsd:attribute name="tolorg_link" type="xsd:integer" use="optional"/>

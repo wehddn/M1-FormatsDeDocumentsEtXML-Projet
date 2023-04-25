@@ -7,7 +7,7 @@
   <xsl:template match="racine">
     <xsl:text>&#xa;</xsl:text>
     <xsl:copy>
-      <xsl:attribute name="depth">
+      <xsl:attribute name="maxdepth">
         <xsl:value-of select="max(//node()[not(node())]/count(ancestor::node()))-2" />
       </xsl:attribute>
       <xsl:apply-templates/>

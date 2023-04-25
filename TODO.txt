@@ -1,0 +1,17 @@
+Représentation rectangulaire
+Effacer l'arbre de tous les attributs, y compris node_id
+Enregistrer pour chaque nœud sa profondeur ainsi que la profondeur totale
+Créer des nœuds vides en utilisant la profondeur maximale pour rendre l'arbre complet
+Numéroter les nœuds sans enfants - c'est-à-dire les nœuds les plus "bas" - ainsi que le nombre totale
+Créer les coordonnées des nœuds :
+    Y est calculé en fonction de la profondeur - hauteur de SVG / profondeur totale * profondeur du nœud
+    X est le milieu entre X de premier enfant et X de dernier enfant;
+    X est calculé récursivement pour chaque enfant jusqu'à ce qu'un nœud sans enfants soit rencontré;
+    X du nœud sans enfants est calculé en fonction du numéro - largeur de SVG / nombre totale * numéro du nœud
+Créer SVG :
+    Calculer la longueur des lignes verticales - hauteur de SVG / profondeur totale
+    Pour chaque nœud :
+        Dessiner une ligne verticale - (X, Y, X, Y+longueur)
+        Si il y a des enfants :
+            Dessiner une ligne horizontale - (X premier enfant, Y premier enfant, X dernier enfant, Y dernier enfant)
+            Appeler récursivement cette fonction pour tous les enfants

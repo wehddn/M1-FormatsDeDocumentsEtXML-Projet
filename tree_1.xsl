@@ -1,4 +1,5 @@
-<!-- Clearing the tree, adding a depth attribute to node and a maxdepth attribute to racine -->
+<!-- Clearing the tree, adding a depth attribute to node, a maxdepth attribute to racine,
+      a position attribute to children without -->
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -26,6 +27,21 @@
       <xsl:apply-templates>
         <xsl:with-param name="depth" select="$depth + 1" />
       </xsl:apply-templates>
+    </xsl:copy>
+  </xsl:template>
+
+  <!-- Identity template to copy nodes without children without attributes and add depth and position attributes -->
+  <xsl:template match="*[not(*)]">
+    <xsl:param name="depth" select="0" />
+    <xsl:variable name="pos" select="count(preceding::*[not(*)])+1"/>
+    <xsl:copy>
+      <xsl:attribute name="depth">
+        <xsl:value-of select="$depth" />
+      </xsl:attribute>
+      <xsl:attribute name="position">
+        <xsl:value-of select="$pos"/>
+      </xsl:attribute>
+      <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>
 

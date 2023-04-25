@@ -1,4 +1,4 @@
-<!-- Clearing the tree and adding a depth attribute -->
+<!-- Clearing the tree, adding a depth attribute to node and a maxdepth attribute to racine -->
 
 <xsl:stylesheet version="1.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
@@ -7,6 +7,9 @@
   <xsl:template match="racine">
     <xsl:text>&#xa;</xsl:text>
     <xsl:copy>
+      <xsl:attribute name="depth">
+        <xsl:value-of select="max(//node()[not(node())]/count(ancestor::node()))-2" />
+      </xsl:attribute>
       <xsl:apply-templates/>
     </xsl:copy>
   </xsl:template>

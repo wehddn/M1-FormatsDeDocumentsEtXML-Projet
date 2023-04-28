@@ -44,6 +44,15 @@
     <xsl:variable name="X">
       <xsl:apply-templates select="." mode="calculate"/>
     </xsl:variable>
+    <xsl:if test="count(child::*) > 1">
+      <xsl:variable name="first-child">
+        <xsl:apply-templates select="child::*[1]" mode="calculate"/>
+      </xsl:variable>
+      <xsl:variable name="last-child">
+        <xsl:apply-templates select="child::*[last()]" mode="calculate"/>
+      </xsl:variable>
+      <svg:line x1="{$first-child}" y1="{$Y + $vertical}" x2="{$last-child}" y2="{$Y + $vertical}" stroke="black"/>
+    </xsl:if>
     <svg:line x1="{$X}" y1="{$Y}" x2="{$X}" y2="{$Y + $vertical}" stroke="black"/>
     <xsl:apply-templates/>
   </xsl:template>

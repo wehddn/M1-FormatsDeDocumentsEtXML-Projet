@@ -5,42 +5,42 @@
   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
   xmlns:svg="http://www.w3.org/2000/svg">
 
-  <!-- Define constant value for hauteur -->
-  <xsl:variable name="hauteur" select="500"/>
-  <xsl:variable name="largeur" select="500"/>
-  <xsl:variable name="vertical" select="$hauteur div //racine/@maxdepth"/>
+  <!-- Define constant values -->
+  <xsl:variable name="rectHeight" select="2000"/>
+  <xsl:variable name="rectWidth" select="10000"/>
+  <xsl:variable name="vertical" select="$rectHeight div //racine/@maxdepth"/>
 
   <!-- Match the racine element -->
   <xsl:template match="racine">
     <xsl:text>&#xa;</xsl:text>
-    <svg:svg width="100%" height="100%" viewBox="20 20 {$largeur} {$hauteur}">
-      <xsl:variable name="horizontal" select="$largeur div @maxposition"/>
+    <svg:svg width="100%" height="100%" viewBox="20 20 {$rectWidth} {$rectHeight}">
       <xsl:text>&#xa;</xsl:text>
       <xsl:apply-templates/>
     </svg:svg>
   </xsl:template>
 
+  
   <xsl:template match="node[@position]">
     <xsl:variable name="maxdepth" select="//racine/@maxdepth"/>
     <xsl:variable name="depth" select="@depth"/>
-    <xsl:variable name="Y" select="$hauteur div $maxdepth * $depth"/>
+    <xsl:variable name="Y" select="$rectHeight div $maxdepth * $depth"/>
     <xsl:variable name="maxposition" select="//racine/@maxposition"/>
     <xsl:variable name="position" select="@position"/>
-    <xsl:variable name="X" select="$largeur div $maxposition * $position"/>
+    <xsl:variable name="X" select="$rectWidth div $maxposition * $position"/>
     <svg:line x1="{$X}" y1="{$Y}" x2="{$X}" y2="{$Y + $vertical}" stroke="black"/>
   </xsl:template>
 
   <xsl:template match="node[@position]" mode="calculate">
     <xsl:variable name="position" select="@position"/>
     <xsl:variable name="maxposition" select="//racine/@maxposition"/>
-    <xsl:variable name="X" select="$largeur div $maxposition * $position"/>
+    <xsl:variable name="X" select="$rectWidth div $maxposition * $position"/>
     <xsl:value-of select="$X"/>
   </xsl:template>
 
   <xsl:template match="node[not(@position)]">
     <xsl:variable name="maxdepth" select="//racine/@maxdepth"/>
     <xsl:variable name="depth" select="@depth"/>
-    <xsl:variable name="Y" select="$hauteur div $maxdepth * $depth"/>
+    <xsl:variable name="Y" select="$rectHeight div $maxdepth * $depth"/>
     <xsl:variable name="X">
       <xsl:apply-templates select="." mode="calculate"/>
     </xsl:variable>

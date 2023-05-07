@@ -38,7 +38,7 @@
     <xsl:variable name="Y" select="$cy + $radius * math:sin($theta)" />
     <xsl:variable name="X2" select="$cx + $radius2 * math:cos($theta)" />
     <xsl:variable name="Y2" select="$cy + $radius2 * math:sin($theta)" />
-    <svg:line x1="{$X}" y1="{$Y}" x2="{$X2}" y2="{$Y2}" stroke="red" />
+    <svg:line x1="{$X}" y1="{$Y}" x2="{$X2}" y2="{$Y2}" stroke="black" />
   </xsl:template>
 
   <xsl:template match="node[@position]" mode="calculate">
@@ -98,7 +98,7 @@
     <xsl:apply-templates />
   </xsl:template>
 
-  
+
   <xsl:template match="node[not(@position)]" mode="calculate">
     <xsl:variable name="depth" select="@depth" />
     <xsl:variable name="radius" select="$depth * $lineLength" />

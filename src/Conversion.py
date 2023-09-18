@@ -49,4 +49,4 @@ for node_label in tree:
 
 tree_xml = ET.ElementTree(root)
 ET.indent(tree_xml, '  ')
-tree_xml.write('tree.xml')
+tree_xml.write('../out/tree.xml')
